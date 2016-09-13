@@ -13,8 +13,8 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     // MARK: - UI Elements 
     private let toolBar = UIToolbar()
-    private var prerviousWebButton = UIBarButtonItem()
-    private var nextWebButton = UIBarButtonItem()
+    private var goBackButton = UIBarButtonItem()
+    private var goForwardButton = UIBarButtonItem()
     private var webView = UIWebView()
     private lazy var searchBar = UISearchBar()
     private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
@@ -53,11 +53,11 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     }
     
     private func createToolBarSettings() {
-        prerviousWebButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(webViewGoBack))
-        nextWebButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
+        goBackButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(webViewGoBack))
+        goForwardButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
         let firstFixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         firstFixedSpace.width = 20
-        toolBar.items = [prerviousWebButton, firstFixedSpace, nextWebButton]
+        toolBar.items = [goBackButton, firstFixedSpace, goForwardButton]
         
         // settings 
         enableWebBrowsingButton(false)
@@ -83,8 +83,8 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
 
     // MARK: - Controllers 
     private func enableWebBrowsingButton(bool: Bool) {
-        prerviousWebButton.enabled = bool
-        nextWebButton.enabled = bool
+        goBackButton.enabled = bool
+        goForwardButton.enabled = bool
     }
 
     // MARK: - WebBrowser functions 
@@ -121,11 +121,15 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     func webViewDidStartLoad(webView: UIWebView) {
         activityView.startAnimating()
-        webView.userInteractionEnabled = true
+        if webView.userInteractionEnabled == false {
+            webView.userInteractionEnabled = true
+        }
     }
     
     func webViewDidFinishLoad(webView: UIWebView) {
         activityView.stopAnimating()
+        goBackButton.enabled = webView.canGoBack
+        goForwardButton.enabled = webView.canGoForward
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
