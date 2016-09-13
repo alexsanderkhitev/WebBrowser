@@ -74,6 +74,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         searchBar.keyboardType = .WebSearch
         searchBar.showsCancelButton = true
         searchBar.delegate = self
+        searchBar.placeholder = "Search or enter website address"
     }
     
     // MARK: - Settings 
@@ -94,9 +95,17 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     }
     
     private func webViewSearch(requestString: String) {
-        let formattedRequestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: .LiteralSearch, range: nil)
-        guard let url = NSURL(string: "https://www.google.com/search?q=\(formattedRequestString)") else { return }
-        let request = NSURLRequest(URL: url)
+        var request = NSURLRequest()
+        let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
+        if predicate.evaluateWithObject(requestString) {
+            guard let url = NSURL(string: requestString) else { return }
+            request = NSURLRequest(URL: url)
+        } else {
+            let formattedRequestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: .LiteralSearch, range: nil)
+            guard let url = NSURL(string: "https://www.google.com/search?q=\(formattedRequestString)") else { return }
+            request = NSURLRequest(URL: url)
+        }
         webView.loadRequest(request)
     }
     
