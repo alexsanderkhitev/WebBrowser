@@ -121,7 +121,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     func webViewDidStartLoad(webView: UIWebView) {
         activityView.startAnimating()
-        if webView.userInteractionEnabled == false {
+        if !webView.userInteractionEnabled {
             webView.userInteractionEnabled = true
         }
     }
