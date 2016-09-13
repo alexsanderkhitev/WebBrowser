@@ -50,6 +50,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     private func setupUIElementsPositions() {
         toolBar.frame = CGRect(x: 0, y: view.frame.height - 44, width: view.frame.width, height: 44)
         webView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height - 108)
+        activityView.frame = CGRect(x: webView.frame.width / 2 - 10, y: webView.frame.height / 2 - 10, width: 20, height: 20)
     }
     
     private func createToolBarSettings() {
@@ -120,7 +121,6 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     // MARK: Activity View
     private func setupActivityViewSettings() {
         activityView.hidesWhenStopped = true
-        activityView.frame = CGRect(x: view.frame.width / 2 - 10, y: view.frame.height / 2 - 10, width: 20, height: 20)
     }
     
     // MARK: - WebView Delegate
