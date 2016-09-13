@@ -144,7 +144,10 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         activityView.stopAnimating()
         goBackButton.enabled = webView.canGoBack
         goForwardButton.enabled = webView.canGoForward
+        
+        guard let pageTitle = webView.stringByEvaluatingJavaScriptFromString("document.title") else { return }
         guard let URL = webView.request?.URL else { return }
+        print(pageTitle, URL.absoluteString)
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
