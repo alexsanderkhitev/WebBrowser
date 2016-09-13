@@ -18,7 +18,7 @@ class HistoryNaviViewController: UINavigationController {
     }
     
     private func setupUISettings() {
-//        navigationBar.translucent = false
+        navigationBar.translucent = false
     }
  
     private func addControllers() {
