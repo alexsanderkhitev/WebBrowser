@@ -302,6 +302,7 @@
 				A66F56D91D8812E900E2767D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
