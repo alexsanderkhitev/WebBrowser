@@ -97,6 +97,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     private func setupWebViewSettings() {
         webView.delegate = self
         webView.userInteractionEnabled = false
+        webView.scalesPageToFit = true
     }
     
     private func webViewSearch(requestString: String) {
@@ -143,6 +144,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         activityView.stopAnimating()
         goBackButton.enabled = webView.canGoBack
         goForwardButton.enabled = webView.canGoForward
+        guard let URL = webView.request?.URL else { return }
     }
     
     func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
