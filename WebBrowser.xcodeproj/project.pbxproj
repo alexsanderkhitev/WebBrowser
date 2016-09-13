@@ -14,6 +14,8 @@
 		A66F56D31D8812E900E2767D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66F56D11D8812E900E2767D /* LaunchScreen.storyboard */; };
 		A66F56DB1D8816EA00E2767D /* MainNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66F56DA1D8816EA00E2767D /* MainNaviViewController.swift */; };
 		A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66F56DD1D88174500E2767D /* MainViewController.swift */; };
+		A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28261D8858A80047067A /* HistoryViewController.swift */; };
+		A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28291D885A890047067A /* HistoryNaviViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +28,8 @@
 		A66F56D41D8812E900E2767D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A66F56DA1D8816EA00E2767D /* MainNaviViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNaviViewController.swift; sourceTree = "<group>"; };
 		A66F56DD1D88174500E2767D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		A67A28261D8858A80047067A /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		A67A28291D885A890047067A /* HistoryNaviViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNaviViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +78,18 @@
 			children = (
 				A66F56DA1D8816EA00E2767D /* MainNaviViewController.swift */,
 				A66F56DD1D88174500E2767D /* MainViewController.swift */,
+				A67A28281D8859EC0047067A /* HistoryGroup */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		A67A28281D8859EC0047067A /* HistoryGroup */ = {
+			isa = PBXGroup;
+			children = (
+				A67A28291D885A890047067A /* HistoryNaviViewController.swift */,
+				A67A28261D8858A80047067A /* HistoryViewController.swift */,
+			);
+			name = HistoryGroup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +166,9 @@
 				A66F56CE1D8812E900E2767D /* WebBrowser.xcdatamodeld in Sources */,
 				A66F56C61D8812E900E2767D /* AppDelegate.swift in Sources */,
 				A66F56DB1D8816EA00E2767D /* MainNaviViewController.swift in Sources */,
+				A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */,
 				A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */,
+				A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

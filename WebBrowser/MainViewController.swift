@@ -55,10 +55,14 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     private func createToolBarSettings() {
         goBackButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(webViewGoBack))
-        goForwardButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
         let firstFixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         firstFixedSpace.width = 20
-        toolBar.items = [goBackButton, firstFixedSpace, goForwardButton]
+        goForwardButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
+        
+        let bookMarkButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(openHistoryController))
+        let flixableSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        
+        toolBar.items = [goBackButton, firstFixedSpace, goForwardButton, flixableSpace, bookMarkButton]
         
         // settings 
         enableWebBrowsingButton(false)
@@ -158,6 +162,13 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        
+    }
+    
+    // MARK: - Navigation
+    @objc private func openHistoryController() {
+        let historyNaviVC = HistoryNaviViewController()
+        presentViewController(historyNaviVC, animated: true, completion: nil)
     }
     
 }
