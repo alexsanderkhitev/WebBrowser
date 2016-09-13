@@ -49,7 +49,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     private func setupUIElementsPositions() {
         toolBar.frame = CGRect(x: 0, y: view.frame.height - 44, width: view.frame.width, height: 44)
-        webView.frame = CGRect(x: 0, y: 44, width: view.frame.width, height: view.frame.height - 88)
+        webView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height - 108)
     }
     
     private func createToolBarSettings() {
