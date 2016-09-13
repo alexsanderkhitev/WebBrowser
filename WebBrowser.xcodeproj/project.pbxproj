@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A60B613B1D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60B61391D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift */; };
+		A60B613C1D88644D00876AA1 /* HistoryURLEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60B613A1D88644D00876AA1 /* HistoryURLEntity.swift */; };
+		A60B613E1D88649B00876AA1 /* DatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A60B613D1D88649B00876AA1 /* DatabaseManager.swift */; };
 		A66F56C61D8812E900E2767D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66F56C51D8812E900E2767D /* AppDelegate.swift */; };
 		A66F56CB1D8812E900E2767D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A66F56C91D8812E900E2767D /* Main.storyboard */; };
 		A66F56CE1D8812E900E2767D /* WebBrowser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A66F56CC1D8812E900E2767D /* WebBrowser.xcdatamodeld */; };
@@ -19,6 +22,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A60B61391D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "HistoryURLEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A60B613A1D88644D00876AA1 /* HistoryURLEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryURLEntity.swift; sourceTree = "<group>"; };
+		A60B613D1D88649B00876AA1 /* DatabaseManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseManager.swift; sourceTree = "<group>"; };
 		A66F56C21D8812E900E2767D /* WebBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WebBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A66F56C51D8812E900E2767D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A66F56CA1D8812E900E2767D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -43,6 +49,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A60B61381D8863A500876AA1 /* Database */ = {
+			isa = PBXGroup;
+			children = (
+				A60B613D1D88649B00876AA1 /* DatabaseManager.swift */,
+				A60B613F1D8864AD00876AA1 /* Models */,
+				A66F56CC1D8812E900E2767D /* WebBrowser.xcdatamodeld */,
+			);
+			name = Database;
+			sourceTree = "<group>";
+		};
+		A60B613F1D8864AD00876AA1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A60B61391D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift */,
+				A60B613A1D88644D00876AA1 /* HistoryURLEntity.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		A66F56B91D8812E900E2767D = {
 			isa = PBXGroup;
 			children = (
@@ -64,11 +89,11 @@
 			children = (
 				A66F56C51D8812E900E2767D /* AppDelegate.swift */,
 				A66F56DC1D8816EE00E2767D /* Controllers */,
+				A60B61381D8863A500876AA1 /* Database */,
 				A66F56C91D8812E900E2767D /* Main.storyboard */,
 				A66F56CF1D8812E900E2767D /* Assets.xcassets */,
 				A66F56D11D8812E900E2767D /* LaunchScreen.storyboard */,
 				A66F56D41D8812E900E2767D /* Info.plist */,
-				A66F56CC1D8812E900E2767D /* WebBrowser.xcdatamodeld */,
 			);
 			path = WebBrowser;
 			sourceTree = "<group>";
@@ -166,9 +191,12 @@
 				A66F56CE1D8812E900E2767D /* WebBrowser.xcdatamodeld in Sources */,
 				A66F56C61D8812E900E2767D /* AppDelegate.swift in Sources */,
 				A66F56DB1D8816EA00E2767D /* MainNaviViewController.swift in Sources */,
+				A60B613C1D88644D00876AA1 /* HistoryURLEntity.swift in Sources */,
+				A60B613B1D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift in Sources */,
 				A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */,
 				A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */,
 				A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */,
+				A60B613E1D88649B00876AA1 /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
