@@ -17,6 +17,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     private var nextWebButton = UIBarButtonItem()
     private var webView = UIWebView()
     private lazy var searchBar = UISearchBar()
+    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     // MARK: - Lifecycle
 
@@ -30,6 +31,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         // settings 
         setupSettings()
         setupWebViewSettings()
+        setupActivityViewSettings()
     }
 
     // MARK: - Override functions 
@@ -42,6 +44,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     private func addUIElements() {
         view.addSubview(toolBar)
         view.addSubview(webView)
+        webView.addSubview(activityView)
     }
     
     private func setupUIElementsPositions() {
@@ -50,8 +53,8 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     }
     
     private func createToolBarSettings() {
-        prerviousWebButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(previousPageAction))
-        nextWebButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(nextPageAction))
+        prerviousWebButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(webViewGoBack))
+        nextWebButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
         let firstFixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
         firstFixedSpace.width = 20
         toolBar.items = [prerviousWebButton, firstFixedSpace, nextWebButton]
@@ -90,17 +93,58 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         webView.userInteractionEnabled = false
     }
     
-    @objc private func previousPageAction() {
-        
+    private func webViewSearch(requestString: String) {
+        let formattedRequestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: .LiteralSearch, range: nil)
+        guard let url = NSURL(string: "https://www.google.com/search?q=\(formattedRequestString)") else { return }
+        let request = NSURLRequest(URL: url)
+        webView.loadRequest(request)
     }
     
-    @objc private func nextPageAction() {
-        
+    @objc private func webViewGoBack() {
+        webView.goBack()
+    }
+    
+    @objc private func webViewGoForward() {
+        webView.goForward()
+    }
+    
+    // MARK: Activity View
+    private func setupActivityViewSettings() {
+        activityView.hidesWhenStopped = true
+        activityView.frame = CGRect(x: view.frame.width / 2 - 10, y: view.frame.height / 2 - 10, width: 20, height: 20)
+    }
+    
+    // MARK: - WebView Delegate
+    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        return true
+    }
+    
+    func webViewDidStartLoad(webView: UIWebView) {
+        activityView.startAnimating()
+        webView.userInteractionEnabled = true
+    }
+    
+    func webViewDidFinishLoad(webView: UIWebView) {
+        activityView.stopAnimating()
+    }
+    
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+        activityView.stopAnimating()
     }
     
     // MARK: - SearchBar Delegate
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = nil 
         searchBar.resignFirstResponder()
+    }
+    
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        webViewSearch(searchText)
+        searchBar.resignFirstResponder()
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
     }
     
 }
