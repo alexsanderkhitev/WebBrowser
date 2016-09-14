@@ -14,9 +14,16 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - UI elements
     fileprivate let tableView = UITableView(frame: CGRect.zero, style: .plain)
     
+    // MARK: - Identifier
+    fileprivate let historyCellIdentifier = "historyCellIdentifier"
+    
     // MARK: - Controllers
     fileprivate var fetchedResultController: NSFetchedResultsController<HistoryURLEntity>!
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
+    // MARK: - Data 
+    
+    fileprivate var histories = [HistoryURLEntity]()
     
     // MARK: - Lifecycle
 
@@ -72,15 +79,26 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
             try fetchedResultController.performFetch()
         } catch let error as NSError {
             print(error.localizedDescription)
+        }        
+
+        guard let histories = fetchedResultController.fetchedObjects else {
+            return
         }
         
-        print("fetchedResultController.fetchedObjects?.count", fetchedResultController.fetchedObjects?.count)
+        self.histories = histories
+        
+        print("fetchedResultController.fetchedObjects?.count", histories.count)
+        histories.forEach { (history) in
+            print(history.pageTitle, history.urlString, history.date)
+        }
+        
+        tableView.reloadData()
     }
     
     fileprivate func fetchHistoryRequest() -> NSFetchRequest<HistoryURLEntity> {
         let fetchRequest = NSFetchRequest<HistoryURLEntity>(entityName: "HistoryURLEntity")
         fetchRequest.fetchLimit = 500
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: false)
         fetchRequest.sortDescriptors = [sortDescriptor]
         return fetchRequest
     }
@@ -90,6 +108,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     fileprivate func setupTableViewSettings() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: historyCellIdentifier)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -97,11 +116,20 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return histories.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: historyCellIdentifier, for: indexPath)
+        let history = histories[indexPath.row]
+        if let pageTitle = history.pageTitle {
+            cell.textLabel?.text = pageTitle
+        }
+        if let pageURL = history.urlString {
+            cell.detailTextLabel?.text = pageURL
+        }
+        
+        return cell
     }
 
     // MARK: - Navigation
