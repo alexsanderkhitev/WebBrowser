@@ -16,5 +16,6 @@ extension HistoryURLEntity {
 
     @NSManaged var pageTitle: String?
     @NSManaged var urlString: String?
+    @NSManaged var date: NSDate?
 
 }

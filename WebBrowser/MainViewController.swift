@@ -148,6 +148,14 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         guard let pageTitle = webView.stringByEvaluatingJavaScript(from: "document.title") else { return }
         guard let URL = webView.request?.url else { return }
         print(pageTitle, URL.absoluteString)
+        
+        let historyEntity = HistoryURLEntity()
+        historyEntity.pageTitle = pageTitle
+        historyEntity.urlString = URL.absoluteString
+        historyEntity.date = NSDate()
+    
+        let dataBaseManager = DatabaseManager()
+        dataBaseManager.saveURLHistory(historyEntity)
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {

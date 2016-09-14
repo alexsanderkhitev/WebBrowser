@@ -17,15 +17,17 @@ class DatabaseManager {
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     func saveURLHistory(_ urlHistory: HistoryURLEntity) {
-      /*  let historyURLEntity = NSEntityDescription.insertNewObject(forEntityName: "HistoryURLEntity", into: appDelegate.managedObjectContext) as! HistoryURLEntity
+        let managedObjectContext = appDelegate.managedObjectContext
+        let historyURLEntity = NSEntityDescription.insertNewObject(forEntityName: "HistoryURLEntity", into: managedObjectContext) as! HistoryURLEntity
+        print("urlHistory.pageTitle", urlHistory.pageTitle, urlHistory.date)
         historyURLEntity.pageTitle = urlHistory.pageTitle
         historyURLEntity.urlString = urlHistory.urlString
-        
+        historyURLEntity.date = urlHistory.date
         do {
-            try appDelegate.managedObjectContext.save()
-
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print(error.localizedDescription)
         }
-     */   
     }
     
 }

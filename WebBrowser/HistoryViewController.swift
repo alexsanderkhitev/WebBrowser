@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import CoreData
 
-class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     // MARK: - UI elements
     fileprivate let tableView = UITableView(frame: CGRect.zero, style: .plain)
+    
+    // MARK: - Controllers
+    fileprivate var fetchedResultController: NSFetchedResultsController<HistoryURLEntity>!
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
     // MARK: - Lifecycle
 
@@ -24,6 +29,8 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         // settings
         setupTableViewSettings()
         setupSettings()
+        // requests
+        requestHistory()
     }
 
     // MARK: - Override functions
@@ -55,6 +62,30 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         definesPresentationContext = true
     }
 
+    // MARK: - Request functions 
+    fileprivate func requestHistory() {
+        let managedObjectContext = appDelegate.managedObjectContext
+        let fetchRequest: NSFetchRequest = fetchHistoryRequest()
+        fetchedResultController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+        fetchedResultController.delegate = self
+        do {
+            try fetchedResultController.performFetch()
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+        
+        print("fetchedResultController.fetchedObjects?.count", fetchedResultController.fetchedObjects?.count)
+    }
+    
+    fileprivate func fetchHistoryRequest() -> NSFetchRequest<HistoryURLEntity> {
+        let fetchRequest = NSFetchRequest<HistoryURLEntity>(entityName: "HistoryURLEntity")
+        fetchRequest.fetchLimit = 500
+        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        return fetchRequest
+    }
+    
+    
     // MARK: - Table view
     fileprivate func setupTableViewSettings() {
         tableView.delegate = self
