@@ -19,6 +19,7 @@
 		A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66F56DD1D88174500E2767D /* MainViewController.swift */; };
 		A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28261D8858A80047067A /* HistoryViewController.swift */; };
 		A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28291D885A890047067A /* HistoryNaviViewController.swift */; };
+		A69648A11D894BAE00BFA163 /* HistoryURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69648A01D894BAE00BFA163 /* HistoryURLModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		A66F56DD1D88174500E2767D /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		A67A28261D8858A80047067A /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		A67A28291D885A890047067A /* HistoryNaviViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNaviViewController.swift; sourceTree = "<group>"; };
+		A69648A01D894BAE00BFA163 /* HistoryURLModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryURLModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 			children = (
 				A60B61391D88644D00876AA1 /* HistoryURLEntity+CoreDataProperties.swift */,
 				A60B613A1D88644D00876AA1 /* HistoryURLEntity.swift */,
+				A69648A01D894BAE00BFA163 /* HistoryURLModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */,
 				A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */,
 				A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */,
+				A69648A11D894BAE00BFA163 /* HistoryURLModel.swift in Sources */,
 				A60B613E1D88649B00876AA1 /* DatabaseManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

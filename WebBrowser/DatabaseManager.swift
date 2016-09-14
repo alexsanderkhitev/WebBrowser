@@ -16,7 +16,7 @@ class DatabaseManager {
     
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    func saveURLHistory(_ urlHistory: HistoryURLEntity) {
+    func saveURLHistory(_ urlHistory: HistoryURLModel) {
         let managedObjectContext = appDelegate.managedObjectContext
         let historyURLEntity = NSEntityDescription.insertNewObject(forEntityName: "HistoryURLEntity", into: managedObjectContext) as! HistoryURLEntity
         print("urlHistory.pageTitle", urlHistory.pageTitle, urlHistory.date)

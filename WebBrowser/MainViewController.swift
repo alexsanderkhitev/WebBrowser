@@ -149,7 +149,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         guard let URL = webView.request?.url else { return }
         print(pageTitle, URL.absoluteString)
         
-        let historyEntity = HistoryURLEntity()
+        let historyEntity = HistoryURLModel()
         historyEntity.pageTitle = pageTitle
         historyEntity.urlString = URL.absoluteString
         historyEntity.date = NSDate()
