@@ -17,11 +17,11 @@ class HistoryNaviViewController: UINavigationController {
         addControllers()
     }
     
-    private func setupUISettings() {
-        navigationBar.translucent = false
+    fileprivate func setupUISettings() {
+        navigationBar.isTranslucent = false
     }
  
-    private func addControllers() {
+    fileprivate func addControllers() {
         let historyVC = HistoryViewController()
         viewControllers = [historyVC]
     }

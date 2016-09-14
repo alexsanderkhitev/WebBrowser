@@ -12,12 +12,12 @@ import WebKit
 class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelegate {
     
     // MARK: - UI Elements 
-    private let toolBar = UIToolbar()
-    private var goBackButton = UIBarButtonItem()
-    private var goForwardButton = UIBarButtonItem()
-    private var webView = UIWebView()
-    private lazy var searchBar = UISearchBar()
-    private let activityView = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    fileprivate let toolBar = UIToolbar()
+    fileprivate var goBackButton = UIBarButtonItem()
+    fileprivate var goForwardButton = UIBarButtonItem()
+    fileprivate var webView = UIWebView()
+    fileprivate lazy var searchBar = UISearchBar()
+    fileprivate let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     // MARK: - Lifecycle
 
@@ -41,26 +41,26 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     }
     
     // MARK: - UI functions 
-    private func addUIElements() {
+    fileprivate func addUIElements() {
         view.addSubview(toolBar)
         view.addSubview(webView)
         webView.addSubview(activityView)
     }
     
-    private func setupUIElementsPositions() {
+    fileprivate func setupUIElementsPositions() {
         toolBar.frame = CGRect(x: 0, y: view.frame.height - 44, width: view.frame.width, height: 44)
         webView.frame = CGRect(x: 0, y: 64, width: view.frame.width, height: view.frame.height - 108)
         activityView.frame = CGRect(x: webView.frame.width / 2 - 10, y: webView.frame.height / 2 - 10, width: 20, height: 20)
     }
     
-    private func createToolBarSettings() {
-        goBackButton = UIBarButtonItem(title: "<-", style: .Plain, target: self, action: #selector(webViewGoBack))
-        let firstFixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
+    fileprivate func createToolBarSettings() {
+        goBackButton = UIBarButtonItem(title: "<-", style: .plain, target: self, action: #selector(webViewGoBack))
+        let firstFixedSpace = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
         firstFixedSpace.width = 20
-        goForwardButton = UIBarButtonItem(title: "->", style: .Plain, target: self, action: #selector(webViewGoForward))
+        goForwardButton = UIBarButtonItem(title: "->", style: .plain, target: self, action: #selector(webViewGoForward))
         
-        let bookMarkButton = UIBarButtonItem(barButtonSystemItem: .Bookmarks, target: self, action: #selector(openHistoryController))
-        let flixableSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
+        let bookMarkButton = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(openHistoryController))
+        let flixableSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         
         toolBar.items = [goBackButton, firstFixedSpace, goForwardButton, flixableSpace, bookMarkButton]
         
@@ -68,112 +68,112 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         enableWebBrowsingButton(false)
     }
     
-    private func setupUISettings() {
-        view.backgroundColor = .whiteColor()
+    fileprivate func setupUISettings() {
+        view.backgroundColor = .white
     }
     
     // MARK: Search bar
-    private func createSearchBar() {
+    fileprivate func createSearchBar() {
         navigationItem.titleView = searchBar
-        searchBar.autocapitalizationType = .None
-        searchBar.keyboardType = .WebSearch
+        searchBar.autocapitalizationType = .none
+        searchBar.keyboardType = .webSearch
         searchBar.showsCancelButton = true
         searchBar.delegate = self
         searchBar.placeholder = "Search or enter website address"
     }
     
     // MARK: - Settings 
-    private func setupSettings() {
+    fileprivate func setupSettings() {
         definesPresentationContext = true
     }
 
     // MARK: - Controllers 
-    private func enableWebBrowsingButton(bool: Bool) {
-        goBackButton.enabled = bool
-        goForwardButton.enabled = bool
+    fileprivate func enableWebBrowsingButton(_ bool: Bool) {
+        goBackButton.isEnabled = bool
+        goForwardButton.isEnabled = bool
     }
 
     // MARK: - WebBrowser functions 
-    private func setupWebViewSettings() {
+    fileprivate func setupWebViewSettings() {
         webView.delegate = self
-        webView.userInteractionEnabled = false
+        webView.isUserInteractionEnabled = false
         webView.scalesPageToFit = true
     }
     
-    private func webViewSearch(requestString: String) {
-        var request = NSURLRequest()
+    fileprivate func webViewSearch(_ requestString: String) {
+        var request: URLRequest!
         let regEx = "((https|http)://)((\\w|-)+)(([.]|[/])((\\w|-)+))+"
         let predicate = NSPredicate(format:"SELF MATCHES %@", argumentArray:[regEx])
-        if predicate.evaluateWithObject(requestString) {
-            guard let url = NSURL(string: requestString) else { return }
-            request = NSURLRequest(URL: url)
+        if predicate.evaluate(with: requestString) {
+            guard let url = URL(string: requestString) else { return }
+            request = URLRequest(url: url)
         } else {
-            let formattedRequestString = requestString.stringByReplacingOccurrencesOfString(" ", withString: "+", options: .LiteralSearch, range: nil)
-            guard let url = NSURL(string: "https://www.google.com/search?q=\(formattedRequestString)") else { return }
-            request = NSURLRequest(URL: url)
+            let formattedRequestString = requestString.replacingOccurrences(of: " ", with: "+", options: .literal, range: nil)
+            guard let url = URL(string: "https://www.google.com/search?q=\(formattedRequestString)") else { return }
+            request = URLRequest(url: url)
         }
         webView.loadRequest(request)
     }
     
-    @objc private func webViewGoBack() {
+    @objc fileprivate func webViewGoBack() {
         webView.goBack()
     }
     
-    @objc private func webViewGoForward() {
+    @objc fileprivate func webViewGoForward() {
         webView.goForward()
     }
     
     // MARK: Activity View
-    private func setupActivityViewSettings() {
+    fileprivate func setupActivityViewSettings() {
         activityView.hidesWhenStopped = true
     }
     
     // MARK: - WebView Delegate
-    func webView(webView: UIWebView, shouldStartLoadWithRequest request: NSURLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
         return true
     }
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         activityView.startAnimating()
-        if !webView.userInteractionEnabled {
-            webView.userInteractionEnabled = true
+        if !webView.isUserInteractionEnabled {
+            webView.isUserInteractionEnabled = true
         }
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         activityView.stopAnimating()
-        goBackButton.enabled = webView.canGoBack
-        goForwardButton.enabled = webView.canGoForward
+        goBackButton.isEnabled = webView.canGoBack
+        goForwardButton.isEnabled = webView.canGoForward
         
-        guard let pageTitle = webView.stringByEvaluatingJavaScriptFromString("document.title") else { return }
-        guard let URL = webView.request?.URL else { return }
+        guard let pageTitle = webView.stringByEvaluatingJavaScript(from: "document.title") else { return }
+        guard let URL = webView.request?.url else { return }
         print(pageTitle, URL.absoluteString)
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         activityView.stopAnimating()
     }
     
     // MARK: - SearchBar Delegate
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = nil 
         searchBar.resignFirstResponder()
     }
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
         webViewSearch(searchText)
         searchBar.resignFirstResponder()
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
     }
     
     // MARK: - Navigation
-    @objc private func openHistoryController() {
+    @objc fileprivate func openHistoryController() {
         let historyNaviVC = HistoryNaviViewController()
-        presentViewController(historyNaviVC, animated: true, completion: nil)
+        present(historyNaviVC, animated: true, completion: nil)
     }
     
 }

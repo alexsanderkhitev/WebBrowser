@@ -17,7 +17,7 @@ class MainNaviViewController: UINavigationController {
         addControllers()
     }
 
-    private func addControllers() {
+    fileprivate func addControllers() {
         let mainVC = MainViewController()
         viewControllers = [mainVC]
     }

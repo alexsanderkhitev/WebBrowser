@@ -14,10 +14,10 @@ class DatabaseManager {
     
     static let shared = DatabaseManager()
     
-    private let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
-    func saveURLHistory(urlHistory: HistoryURLEntity) {
-        let historyURLEntity = NSEntityDescription.insertNewObjectForEntityForName("HistoryURLEntity", inManagedObjectContext: appDelegate.managedObjectContext) as! HistoryURLEntity
+    func saveURLHistory(_ urlHistory: HistoryURLEntity) {
+      /*  let historyURLEntity = NSEntityDescription.insertNewObject(forEntityName: "HistoryURLEntity", into: appDelegate.managedObjectContext) as! HistoryURLEntity
         historyURLEntity.pageTitle = urlHistory.pageTitle
         historyURLEntity.urlString = urlHistory.urlString
         
@@ -25,7 +25,7 @@ class DatabaseManager {
             try appDelegate.managedObjectContext.save()
 
         }
-        
+     */   
     }
     
 }

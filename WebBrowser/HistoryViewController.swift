@@ -11,7 +11,7 @@ import UIKit
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     // MARK: - UI elements
-    private let tableView = UITableView(frame: CGRectZero, style: .Plain)
+    fileprivate let tableView = UITableView(frame: CGRect.zero, style: .plain)
     
     // MARK: - Lifecycle
 
@@ -33,48 +33,48 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     }
   
     // MARK: - UI functions
-    private func addUIElements() {
+    fileprivate func addUIElements() {
         view.addSubview(tableView)
     }
     
-    private func setupUIElementsPositions() {
+    fileprivate func setupUIElementsPositions() {
         tableView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
     }
     
-    private func createButtons() {
-        let doneButton = UIBarButtonItem(barButtonSystemItem: .Done, target: self, action: #selector(dissmiss))
+    fileprivate func createButtons() {
+        let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(dissmiss))
         navigationItem.rightBarButtonItem = doneButton
     }
     
-    private func setupUISettings() {
-        view.backgroundColor = .whiteColor()
+    fileprivate func setupUISettings() {
+        view.backgroundColor = .white
     }
     
     // MARK: - Settings
-    private func setupSettings() {
+    fileprivate func setupSettings() {
         definesPresentationContext = true
     }
 
     // MARK: - Table view
-    private func setupTableViewSettings() {
+    fileprivate func setupTableViewSettings() {
         tableView.delegate = self
         tableView.dataSource = self
     }
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return UITableViewCell()
     }
 
     // MARK: - Navigation
-    @objc private func dissmiss() {
-        dismissViewControllerAnimated(true, completion: nil)
+    @objc fileprivate func dissmiss() {
+        dismiss(animated: true, completion: nil)
     }
 }
