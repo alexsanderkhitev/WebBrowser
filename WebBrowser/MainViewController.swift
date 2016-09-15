@@ -9,7 +9,7 @@
 import UIKit
 import WebKit
 
-class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelegate {
+class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelegate, HistoryManagerDelegate {
     
     // MARK: - UI Elements 
     fileprivate let toolBar = UIToolbar()
@@ -30,6 +30,7 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
         setupUISettings()
         // settings 
         setupSettings()
+        setupDelegates()
         setupWebViewSettings()
         setupActivityViewSettings()
     }
@@ -85,6 +86,10 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     // MARK: - Settings 
     fileprivate func setupSettings() {
         definesPresentationContext = true
+    }
+    
+    fileprivate func setupDelegates() {
+        HistoryManager.shared.delegate = self
     }
 
     // MARK: - Controllers 
@@ -176,6 +181,13 @@ class MainViewController: UIViewController, UIWebViewDelegate, UISearchBarDelega
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
+    }
+    
+    // MARK: - History Delegate
+    func didSelectHistory(history: HistoryURLEntity) {
+        print("History Delegate", history.pageTitle)
+        guard let URLString = history.urlString else { return }
+        webViewSearch(URLString)
     }
     
     // MARK: - Navigation

@@ -20,6 +20,7 @@
 		A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28261D8858A80047067A /* HistoryViewController.swift */; };
 		A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A67A28291D885A890047067A /* HistoryNaviViewController.swift */; };
 		A69648A11D894BAE00BFA163 /* HistoryURLModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A69648A01D894BAE00BFA163 /* HistoryURLModel.swift */; };
+		A6E48FBA1D8AB57E00DD6231 /* HistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E48FB91D8AB57E00DD6231 /* HistoryManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		A67A28261D8858A80047067A /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		A67A28291D885A890047067A /* HistoryNaviViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryNaviViewController.swift; sourceTree = "<group>"; };
 		A69648A01D894BAE00BFA163 /* HistoryURLModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryURLModel.swift; sourceTree = "<group>"; };
+		A6E48FB91D8AB57E00DD6231 /* HistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +94,7 @@
 			children = (
 				A66F56C51D8812E900E2767D /* AppDelegate.swift */,
 				A66F56DC1D8816EE00E2767D /* Controllers */,
+				A6E48FB81D8AB56F00DD6231 /* Managers */,
 				A60B61381D8863A500876AA1 /* Database */,
 				A66F56C91D8812E900E2767D /* Main.storyboard */,
 				A66F56CF1D8812E900E2767D /* Assets.xcassets */,
@@ -118,6 +121,14 @@
 				A67A28261D8858A80047067A /* HistoryViewController.swift */,
 			);
 			name = HistoryGroup;
+			sourceTree = "<group>";
+		};
+		A6E48FB81D8AB56F00DD6231 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				A6E48FB91D8AB57E00DD6231 /* HistoryManager.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -200,6 +211,7 @@
 				A67A28271D8858A80047067A /* HistoryViewController.swift in Sources */,
 				A66F56DE1D88174500E2767D /* MainViewController.swift in Sources */,
 				A67A282A1D885A890047067A /* HistoryNaviViewController.swift in Sources */,
+				A6E48FBA1D8AB57E00DD6231 /* HistoryManager.swift in Sources */,
 				A69648A11D894BAE00BFA163 /* HistoryURLModel.swift in Sources */,
 				A60B613E1D88649B00876AA1 /* DatabaseManager.swift in Sources */,
 			);

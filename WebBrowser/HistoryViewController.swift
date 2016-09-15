@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 
+
 class HistoryViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, NSFetchedResultsControllerDelegate {
     
     // MARK: - UI elements
@@ -20,6 +21,7 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
     // MARK: - Controllers
     fileprivate var fetchedResultController: NSFetchedResultsController<HistoryURLEntity>!
     fileprivate let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
     
     // MARK: - Data 
     
@@ -125,12 +127,16 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         if let pageTitle = history.pageTitle {
             cell.textLabel?.text = pageTitle
         }
-        if let pageURL = history.urlString {
-            cell.detailTextLabel?.text = pageURL
-        }
-        
+     
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        dissmiss()
+        let history = histories[indexPath.row]
+        HistoryManager.shared.didSelectHistory(history: history)
+    }
+    
 
     // MARK: - Navigation
     @objc fileprivate func dissmiss() {
