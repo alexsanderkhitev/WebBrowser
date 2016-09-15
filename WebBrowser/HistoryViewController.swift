@@ -137,6 +137,17 @@ class HistoryViewController: UIViewController, UITableViewDataSource, UITableVie
         HistoryManager.shared.didSelectHistory(history: history)
     }
     
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let removeAction = UITableViewRowAction(style: .destructive, title: "Delete") { (action, indexPath) in
+            let history = self.histories[indexPath.row]
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let managedObjectContext = appDelegate.managedObjectContext
+            managedObjectContext.delete(history)
+            self.requestHistory()
+        }
+        return [removeAction]
+    }
+    
 
     // MARK: - Navigation
     @objc fileprivate func dissmiss() {
